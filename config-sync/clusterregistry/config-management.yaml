@@ -1,0 +1,33 @@
+kind: Cluster
+apiVersion: clusterregistry.k8s.io/v1alpha1
+metadata:
+  name: usercluster1
+  labels:
+    environment: dr
+---
+kind: ClusterSelector
+apiVersion: configmanagement.gke.io/v1
+metadata:
+  name: usercluster1
+spec:
+  selector:
+    matchLabels:
+      environment: dr
+---
+kind: Cluster
+apiVersion: clusterregistry.k8s.io/v1alpha1
+metadata:
+  name: anthos-gke-cluster
+  labels:
+    environment: dc
+    location: asia-southeast1
+---
+kind: ClusterSelector
+apiVersion: configmanagement.gke.io/v1
+metadata:
+  name: anthos-gke-cluster
+spec:
+  selector:
+    matchLabels:
+      environment: dc
+      location: asia-southeast1
